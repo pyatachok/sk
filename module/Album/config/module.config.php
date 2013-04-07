@@ -10,29 +10,18 @@ return array(
     
     'router' => array(
         'routes' => array(
-            'album-album-index' => array(
-                'type'    => 'Literal',
+
+             'album' => array(
+                'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/album/index',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Album\Controller',
-                        'controller' => 'Album',
-                        'action'     => 'index',
+                    'route'    => '/album[/:action][/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
                     ),
-                ),
-                'may_terminate' => true,
-                'child_routes' => array(
-                    'default' => array(
-                        'type'    => 'Segment',
-                        'options' => array(
-                            'route'    => '/[:controller[/:action]]',
-                            'constraints' => array(
-                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-                            ),
-                            'defaults' => array(
-                            ),
-                        ),
+                    'defaults' => array(
+                        'controller' => 'Album\Controller\Album',
+                        'action'     => 'index',
                     ),
                 ),
             ),
