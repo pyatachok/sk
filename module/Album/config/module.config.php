@@ -10,7 +10,6 @@ return array(
     
     'router' => array(
         'routes' => array(
-
              'album' => array(
                 'type'    => 'segment',
                 'options' => array(
