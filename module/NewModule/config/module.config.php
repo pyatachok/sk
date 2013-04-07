@@ -2,22 +2,22 @@
 return array(
     'controllers' => array(
         'invokables' => array(
-            'ZendSkeletonModule\Controller\Skeleton' => 'ZendSkeletonModule\Controller\SkeletonController',
+            'NewModule\Controller\Hello' => 'NewModule\Controller\HelloController',
         ),
     ),
     'router' => array(
         'routes' => array(
-            'module-name-here' => array(
+            'new-module-hello-world' => array(
                 'type'    => 'Literal',
                 'options' => array(
                     // Change this to something specific to your module
-                    'route'    => '/module-specific-root',
+                    'route'    => '/hello/world',
                     'defaults' => array(
                         // Change this value to reflect the namespace in which
                         // the controllers for your module are found
-                        '__NAMESPACE__' => 'ZendSkeletonModule\Controller',
-                        'controller'    => 'Skeleton',
-                        'action'        => 'index',
+                        '__NAMESPACE__' => 'NewModule\Controller',
+                        'controller'    => 'Hello',
+                        'action'        => 'world',
                     ),
                 ),
                 'may_terminate' => true,
