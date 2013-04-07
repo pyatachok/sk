@@ -1,11 +1,16 @@
 <?php
 // module/Album/config/module.config.php:
 
-
 return array(
+    'controllers' => array(
+        'invokables' => array(
+            'Album\Controller\Album' => 'Album\Controller\AlbumController',
+        ),
+    ),
+    
     'router' => array(
         'routes' => array(
-            'album' => array(
+            'album-album-index' => array(
                 'type'    => 'Literal',
                 'options' => array(
                     'route'    => '/album/index',
@@ -35,15 +40,10 @@ return array(
     ),
     
     
-    'controllers' => array(
-        'invokables' => array(
-            'Album\Controller\Album' => 'Album\Controller\AlbumController',
-        ),
-    ),
     
     'view_manager' => array(
         'template_path_stack' => array(
-            'album' => __DIR__ . '/../view',
+            'Album' => __DIR__ . '/../view',
         ),
     ),
     
