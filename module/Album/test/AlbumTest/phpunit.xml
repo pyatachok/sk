@@ -1,0 +1,10 @@
+<phpunit bootstrap='./bootstrap.php' colors='true'>  
+    <testsuite name='ZF2 Album Module Test Suite'>  
+        <directory>.</directory>  
+    </testsuite>  
+    <filter>  
+        <whitelist>  
+            <directory suffix='.php'>../src/</directory>  
+        </whitelist>  
+    </filter>  
+</phpunit>  
