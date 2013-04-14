@@ -5,7 +5,7 @@
  *
  * @author pyatachok
  */
-namespace AlbumForm;
+namespace Album\Form;
 
 use Zend\Form\Form;
 
