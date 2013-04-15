@@ -47,7 +47,7 @@ class AlbumTable
         {
             if ( $this->getAlbum($id))
             {
-                $this->tableGateway->update($data, array('id', $id));
+                $this->tableGateway->update($data, array('id' => $id));
             }
             else
             {
