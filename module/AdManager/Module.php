@@ -1,7 +1,13 @@
 <?php
 // module/AdManager/Module.php
 
-class Module
+namespace AdManager;
+
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+use Zend\Mvc\ModuleRouteListener;
+
+
+class Module implements AutoloaderProviderInterface
 {
     public function getAutoloaderConfig()
     {
