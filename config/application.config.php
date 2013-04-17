@@ -5,6 +5,7 @@ return array(
         'Application',
         'Album',
         'NewModule',
+        'AdManager',
         
     ),
 
