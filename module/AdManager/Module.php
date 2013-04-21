@@ -7,6 +7,12 @@ use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\Mvc\ModuleRouteListener;
 
 
+use AdManager\Model\Ad;
+use AdManager\Model\AdTable;
+use Zend\Db\ResultSet\ResultSet;
+use Zend\Db\TableGateway\TableGateway;
+
+
 class Module implements AutoloaderProviderInterface
 {
     public function getAutoloaderConfig()
@@ -27,6 +33,30 @@ class Module implements AutoloaderProviderInterface
     {
         return include __DIR__ . '/config/module.config.php';
     }
+    
+    public function getServiceConfig() 
+    {
+	return array(
+	    'factories' => array(
+		'AdManagerModelAdTable' => function ($sm) {
+		    $tableGateway = $sm->get('AdTableGateway');
+		    $table = new AdTable($tableGateway);
+		    return $table;
+		},
+		'AdTableGateway' => function ($sm) {
+		    $dbAdapter = $sm->get('ZendDbAdapterAdapter');
+		    $resultSetPrototype = new ResultSet();
+		    $resultSetPrototype->setArrayObjectPrototype(new Ad());
+		    return new TableGateway('ad', $dbAdapter, null, $resultSetPrototype);
+		}
+		
+	    )
+		
+	    
+	);
+    }
+    
+    
 }
 
 

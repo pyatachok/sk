@@ -8,10 +8,30 @@ use Zend\View\Model\ViewModel;
 
 class AdManagerController extends AbstractActionController
 {
+    protected $adTable;
+
+
+
+
     public function indexAction()
     {
-	parent::indexAction();
+	return new ViewModel(array('ads' => $this->getAdTable()->fetchAll()));
     }
+    
+    
+    public function getAdTable()
+    {
+	if (!$this->adTable)
+	{
+	    $sm = $this->getServiceLocator();
+	    $this->adTable = $sm->get('AdManager\Model\AdTable');
+	}
+	return $this->adTable;
+    }
+    
+    
+    
+    
 }
 
 
