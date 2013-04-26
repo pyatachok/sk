@@ -15,7 +15,8 @@ class AdManagerController extends AbstractActionController
 
     public function indexAction()
     {
-	return new ViewModel(array('ads' => $this->getAdTable()->fetchAll()));
+	$ads = $this->getAdTable()->fetchAll();
+	return new ViewModel(array('ads' => $ads));
     }
     
     
@@ -27,6 +28,13 @@ class AdManagerController extends AbstractActionController
 	    $this->adTable = $sm->get('AdManager\Model\AdTable');
 	}
 	return $this->adTable;
+    }
+    
+    
+    
+    public function addAction()
+    {
+	
     }
     
     

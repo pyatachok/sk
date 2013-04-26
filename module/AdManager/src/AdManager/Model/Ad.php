@@ -1,6 +1,8 @@
 <?php
 namespace AdManager\Model;
  
+use AdManager\Model\PublisherTable;
+
 class Ad
 {
     public $id;

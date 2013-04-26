@@ -3,7 +3,7 @@ namespace AdManager\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 
-class AdTable
+class PublisherTable
 {
     protected $tableGateway;
 
@@ -15,10 +15,10 @@ class AdTable
     public function fetchAll()
     {
         $resultSet = $this->tableGateway->select();
-	return $resultSet;
+        return $resultSet;
     }
     
-    public function getAd($id)
+    public function getPublisher($id)
     {
 	$id = (int) $id;
 	$rowset = $this->tableGateway->select(array('id' => $id));
@@ -31,22 +31,21 @@ class AdTable
 	return $row;
     }
     
-    public function saveAd(Ad $ad) 
+    public function savePublisher(Publisher $publisher) 
     {
 	$data = array(
-	    'creation_date' => $ad->creation_date,
-	    'publisher_id' => $ad->publisher_id,
+	    'name' => $publisher->name,
 	);
 	
 	
-	$id = (int) $ad->id;
+	$id = (int) $publisher->id;
 	if (0 == $id)
 	{
 	    $this->tableGateway->insert($data);
 	}
 	else
 	{
-	    if ($this->getAd($id))
+	    if ($this->getPublisher($id))
 	    {
 		$this->tableGateway->update($data, array('id' => $id));
 	    }
@@ -58,7 +57,7 @@ class AdTable
 	
     }
     
-    public function deleteAd($id)
+    public function deletePublisher($id)
     {
 	$this->tableGateway->delete(array('id' => $id));
     }
