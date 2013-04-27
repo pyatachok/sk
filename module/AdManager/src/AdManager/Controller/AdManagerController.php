@@ -5,6 +5,7 @@ namespace AdManager\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use MyVendor\Model;
 
 class AdManagerController extends AbstractActionController
 {
@@ -15,6 +16,8 @@ class AdManagerController extends AbstractActionController
 
     public function indexAction()
     {
+	$m = new Model();
+	$m->yo();
 	$ads = $this->getAdTable()->fetchAll();
 	return new ViewModel(array('ads' => $ads));
     }

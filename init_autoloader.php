@@ -47,3 +47,29 @@ if ($zf2Path) {
 if (!class_exists('Zend\Loader\AutoloaderFactory')) {
     throw new RuntimeException('Unable to load ZF2. Run `php composer.phar install` or define a ZF2_PATH environment variable.');
 }
+
+
+
+$autoLoader = new Zend\Loader\StandardAutoloader(array(
+
+    'prefixes' => array(
+
+        'MyVendor' => __DIR__ . '/vendor/MyVendor',
+
+    ),
+
+    'namespaces' => array(
+
+        'MyVendor' => __DIR__ . '/vendor/MyVendor',
+
+    ),
+
+    'fallback_autoloader' => true,
+
+));
+
+
+
+// register our StandardAutoloader with the SPL autoloader
+
+$autoLoader->register(); 
