@@ -6,6 +6,9 @@ return array(
         'Album',
         'NewModule',
         'AdManager',
+	'ZendDeveloperTools',
+        'DoctrineModule',
+        'DoctrineORMModule',
         
     ),
 

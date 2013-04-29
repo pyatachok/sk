@@ -1,13 +1,14 @@
 <?php
 
 namespace MyVendor;
+
 /**
  * Description of Model
  *
  * @author pyatachok
  */
-class Model
+abstract class Model
 {
-    //put your code here
-    public function yo(){}
+    abstract public function exchangeArray($data);
+    
 }

@@ -14,12 +14,13 @@ $this->headTitle($title);
     <th>Creation Date</th>
     <th>Publisher</th>
     <th>&nbsp;</th>
+    <th>&nbsp;</th>
 </tr>
 <?php foreach ($ads as $ad) : ?>
 <tr>
     <td><?php echo $this->escapeHtml($ad->creation_date);?></td>
     <td><?php echo $this->escapeHtml($ad->publisher_id);?></td>
-    <td><?php echo get_class($ad);?></td>
+    <td><?php echo $ad->getPublisher();?></td>
     <td>
         <a href="<?php echo $this->url('ad-manager',
             array('action'=>'edit', 'id' => $ad->id));?>">Edit</a>

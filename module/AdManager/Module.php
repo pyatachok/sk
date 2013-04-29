@@ -48,6 +48,17 @@ class Module implements AutoloaderProviderInterface
 		    $resultSetPrototype = new ResultSet();
 		    $resultSetPrototype->setArrayObjectPrototype(new Ad());
 		    return new TableGateway('ad', $dbAdapter, null, $resultSetPrototype);
+		},
+		'AdManagerModelPublisherTable' => function ($sm) {
+		    $tableGateway = $sm->get('PublisherTableGateway');
+		    $table = new PublisherTable($tableGateway);
+		    return $table;
+		},
+		'PublisherTableGateway' => function ($sm) {
+		    $dbAdapter = $sm->get('ZendDbAdapterAdapter');
+		    $resultSetPrototype = new ResultSet();
+		    $resultSetPrototype->setArrayObjectPrototype(new Publisher());
+		    return new TableGateway('publisher', $dbAdapter, null, $resultSetPrototype);
 		}
 		
 	    )
