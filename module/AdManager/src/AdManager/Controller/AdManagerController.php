@@ -12,8 +12,26 @@ class AdManagerController extends AbstractActionController
 
     public function indexAction()
     {
+//	$objectManager = $this
+//	    ->getServiceLocator()
+//	    ->get('Doctrine\ORM\EntityManager');
+//	$ad = new \AdManager\Entity\Ad();
+//	$ad->setCreationDate(date('Y-m-d', time()));
+//	$ad->setPublisherId(1);
+//	$objectManager->persist($ad);
+//	$objectManager->flush();
+//	die(var_dump($ad->getId())); 
+	
+	
 	$ads = $this->getAdTable()->fetchAll();
 	return new ViewModel(array('ads' => $ads));
+	
+
+
+	$objectManager->persist($user);
+
+    die(var_dump($user->getId())); // yes, I'm lazy
+	
     }
     
     
