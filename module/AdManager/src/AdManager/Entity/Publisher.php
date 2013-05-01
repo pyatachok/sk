@@ -7,18 +7,14 @@ use Zend\InputFilter\InputFilter;
 use Zend\InputFilter\Factory as InputFactory;
 use Zend\InputFilter\InputFilterAwareInterface;
 use Zend\InputFilter\InputFilterInterface; 
-use AdManager\Entity\Publisher;
+use AdManager\Entity\Ad;
 /**
-* Advertisment.
+* Publisher.
 *
 * @ORM\Entity
-* @ORM\Table(name="ad")
-* @property datetime $creation_date
-* @property integer $publisher_id
-* @property AdManager\Entity\Publisher $publisher
-* @property int $id
+* @ORM\Table(name="publisher")
 */
-class Ad implements InputFilterAwareInterface  {
+class Publisher implements InputFilterAwareInterface  {
     /**
     * @ORM\Id
     * @ORM\GeneratedValue(strategy="AUTO")
@@ -26,27 +22,10 @@ class Ad implements InputFilterAwareInterface  {
     */
     protected $id;
 
-    /** @ORM\Column(type="datetime") */
-    protected $creation_date;
-    
-    /** @ORM\Column(type="integer") */
-    protected $publisher_id;
-
+    /** @ORM\Column(type="string") */
+    protected $name;
 
     
-    /* 
-     * @ManyToOne(targetEntity="Publisher" )
-     * @JoinColumn(name="publisher_id", referencedColumnName="id")
-    */
-    protected $publisher;
-   
-    
-//    public function __construct()
-//    {
-//        $this->publisher = new \Doctrine\Common\Collections\ArrayCollection();
-//    }
-    
-    // getters/setters
     /**
      * Magic getter to expose protected properties.
      *
@@ -69,15 +48,6 @@ class Ad implements InputFilterAwareInterface  {
 	$this->$property = $value;
     }
 
-
-//    public function getPublisher() 
-//    {
-//	$em = $this->getDoctrine()->getEntityManager();
-//	$publisher = $em->find('Application\Entity\Publisher', $this->publisher_id);
-//        return $publisher;
-//    }
-    
-    
     /**
      * Convert the object to an array.
      *
@@ -88,17 +58,7 @@ class Ad implements InputFilterAwareInterface  {
 	return get_object_vars($this);
     }
 
-    /**
-     * Populate from an array.
-     *
-     * @param array $data
-     */
-    public function populate($data = array())
-    {
-	$this->id = $data['id'];
-	$this->artist = $data['artist'];
-	$this->title = $data['title'];
-    }
+
 
     public function setInputFilter(InputFilterInterface $inputFilter)
     {
@@ -122,21 +82,13 @@ class Ad implements InputFilterAwareInterface  {
 	    )));
 
 	    $inputFilter->add($factory->createInput(array(
-			'name' => 'creation_date',
+			'name' => 'name',
 			'required' => true,
 			'filters' => array(
 			    array('name' => 'StripTags'),
 			    array('name' => 'StringTrim'),
 			),
 			
-	    )));
-
-	    $inputFilter->add($factory->createInput(array(
-			'name' => 'publisher_id',
-			'required' => true,
-			'filters' => array(
-			    array('name' => 'Int'),
-			),
 	    )));
 
 	    $this->inputFilter = $inputFilter;

@@ -28,8 +28,10 @@ class AdManagerController extends AbstractActionController
 //	$objectManager->persist($ad);
 //	$objectManager->flush();
 //	die(var_dump($ad->getId())); 
+	$ads = $this->getEntityManager()->getRepository('AdManager\Entity\Ad')->findAll();
+
 	return new ViewModel(array(
-	'ads' => $this->getEntityManager()->getRepository('AdManager\Entity\Ad')->findAll()
+	    'ads' => $ads
 	));
 
 	
