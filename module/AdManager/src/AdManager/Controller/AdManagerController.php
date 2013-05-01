@@ -5,10 +5,17 @@ namespace AdManager\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Doctrine\ORM\EntityManager; 
+use AdManager\Entity\Ad;
 
 class AdManagerController extends AbstractActionController
 {
     protected $adTable;
+    
+    /**
+     * @var Doctrine\ORM\EntityManager
+     */
+    protected $em;
 
     public function indexAction()
     {
@@ -21,7 +28,10 @@ class AdManagerController extends AbstractActionController
 //	$objectManager->persist($ad);
 //	$objectManager->flush();
 //	die(var_dump($ad->getId())); 
-	
+	return new ViewModel(array(
+	'ads' => $this->getEntityManager()->getRepository('AdManager\Entity\Ad')->findAll()
+	));
+
 	
 	$ads = $this->getAdTable()->fetchAll();
 	return new ViewModel(array('ads' => $ads));
@@ -32,6 +42,22 @@ class AdManagerController extends AbstractActionController
 
     die(var_dump($user->getId())); // yes, I'm lazy
 	
+    }
+    
+    
+
+    public function getEntityManager()
+    {
+	if (null === $this->em)
+	{
+	    $this->em = $this->getServiceLocator()->get('doctrine.entitymanager.orm_default');
+	}
+	return $this->em;
+    }
+    
+    public function setEntityManager(EntityManager $em)
+    {
+	$this->em = $em;
     }
     
     

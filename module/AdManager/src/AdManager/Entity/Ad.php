@@ -12,7 +12,7 @@ use Zend\InputFilter\InputFilterInterface;
 *
 * @ORM\Entity
 * @ORM\Table(name="ad")
-* @property timestamp $creation_date
+* @property datetime $creation_date
 * @property integer $publisher_id
 * @property int $id
 */
@@ -24,7 +24,7 @@ class Ad implements InputFilterAwareInterface  {
     */
     protected $id;
 
-    /** @ORM\Column(type="timestamp") */
+    /** @ORM\Column(type="datetime") */
     protected $creation_date;
     
     /** @ORM\Column(type="integer") */
