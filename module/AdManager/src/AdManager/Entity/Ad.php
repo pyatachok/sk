@@ -29,6 +29,8 @@ class Ad implements InputFilterAwareInterface  {
     protected $creation_date;
     
 
+    /** @ORM\Column(type="integer") */
+    protected $publisher_id;
 
 
     /** 
@@ -70,15 +72,7 @@ class Ad implements InputFilterAwareInterface  {
     public function getPublisher() 
     {
         return $this->publisher;
-    }
-    
-//    public function getPublisher() 
-//    {
-//	$em = $this->getDoctrine()->getEntityManager();
-//	$publisher = $em->find('Application\Entity\Publisher', $this->publisher_id);
-//        return $publisher;
-//    }
-    
+    }    
     
     /**
      * Convert the object to an array.
