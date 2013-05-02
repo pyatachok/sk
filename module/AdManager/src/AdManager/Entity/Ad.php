@@ -15,7 +15,6 @@ use AdManager\Entity\Publisher;
 * @ORM\Table(name="ad")
 * @property datetime $creation_date
 * @property integer $publisher_id
-* @property AdManager\Entity\Publisher $publisher
 * @property int $id
 */
 class Ad implements InputFilterAwareInterface  {
@@ -33,9 +32,9 @@ class Ad implements InputFilterAwareInterface  {
     protected $publisher_id;
 
 
-    /* 
-     * @ManyToOne(targetEntity="Publisher" inversedBy="ads")
-     * @JoinColumn(name="publisher_id", referencedColumnName="id")
+    /** 
+     * @ORM\ManyToOne(targetEntity="Publisher" inversedBy="ads")
+     * @ORM\JoinColumn(name="publisher_id", referencedColumnName="id")
     */
     protected $publisher;
    
@@ -69,6 +68,11 @@ class Ad implements InputFilterAwareInterface  {
     }
 
 
+    public function getPublisher() 
+    {
+        return $this->publisher;
+    }
+    
 //    public function getPublisher() 
 //    {
 //	$em = $this->getDoctrine()->getEntityManager();
