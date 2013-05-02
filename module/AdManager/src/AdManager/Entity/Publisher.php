@@ -25,7 +25,10 @@ class Publisher implements InputFilterAwareInterface  {
     /** @ORM\Column(type="string") */
     protected $name;
 
-    
+    /**
+     * @ORM\OneToMany(targetEntity="Ad", mappedBy="publisher")
+     */
+    public $ads;
     /**
      * Magic getter to expose protected properties.
      *

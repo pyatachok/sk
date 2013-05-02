@@ -33,9 +33,8 @@ class Ad implements InputFilterAwareInterface  {
     protected $publisher_id;
 
 
-    
     /* 
-     * @ManyToOne(targetEntity="Publisher" )
+     * @ManyToOne(targetEntity="Publisher" inversedBy="ads")
      * @JoinColumn(name="publisher_id", referencedColumnName="id")
     */
     protected $publisher;
