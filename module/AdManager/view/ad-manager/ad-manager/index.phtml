@@ -20,7 +20,6 @@ $this->headTitle($title);
 <?php foreach ($ads as $ad) : ?>
 <tr>
     <td><?php echo $ad->creation_date->format('Y-m-d H:i:s');?></td>
-    <td><?php echo $this->escapeHtml($ad->publisher_id);?></td>
     <td><?php var_export($ad->publisher->name);?></td>
     <td>
         <a href="<?php echo $this->url('ad-manager',
